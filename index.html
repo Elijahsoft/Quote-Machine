@@ -1,0 +1,74 @@
+<html lang="en">
+    <head>
+        <title>Random Quote</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    </head>
+    <body>
+<script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+<div class="container">
+<div class="row py-5">
+<div class="col-md-6 offset-md-3">
+<wrapper id="quote-box">
+    <div class="card">
+        <div class="card-header text-center">
+            Random Quote Machine
+        </div>
+  <div class="card-body">
+       <h5 class="card-title"><div id="text"></div></h5>
+        <p class="card-text">
+        <div id="author"></div>
+        </p>
+          
+        <button id="new-quote" onclick="generateRandomQuote();" class="btn  btn-block btn-success">New Quote</button>
+        <a  href="#" id="tweet-quote" class="btn  btn-block btn-primary" target="_blank">Tweet Quote</a>
+         
+        </div>
+      </div> 
+      
+    </wrapper>
+</div>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+
+<script>
+let quoteBank = [{
+    quote:"Its only drawback is that it comes at such an inconvenient time of day.In the end, ",
+    author: " - Jeniffer"
+    },{    
+    quote:"Such an inconvenient time of day.You will face many defeats in life, but never let yourself be defeated. ",
+    author: " - Elissa"
+    },
+    {
+    quote:"Morning is wonderful.The greatest glory in living lies not in never falling, but in rising every time we fall.",
+    author: " - Mufassa"
+    },
+    {
+    quote:" Morning without you is a dwindled dawn.Never let the fear of striking out keep you from playing the game.",
+    author: " - Gringa"
+    }
+]
+    
+    window.onload = init;
+    function init(){
+        generateRandomQuote();
+    }
+    function generateRandomQuote(){
+      let quoteSize = quoteBank.length;
+      let randomIndex = Math.floor(Math.random() * quoteSize);
+      let randomQuoteData = quoteBank[randomIndex];
+    console.log('Window Loaded');
+    let twitterLink = "https://twitter.com/intent/tweet?hashtags=quotes&amp;related=freecodecamp&amp;text=%22Fall%20seven%20times%20and%20stand%20up%20eight.%22%20Japanese%20Proverb";
+    let linkApiFormat =   randomQuoteData.quote.replace(/ /g,"%20");
+    twitterLink += linkApiFormat;
+    let authorApiFormat =   randomQuoteData.author.replace(/ /g,"%20");
+    twitterLink += authorApiFormat
+    document.getElementById('tweet-quote').href = twitterLink;
+    document.getElementById('text').innerText = randomQuoteData.quote;
+    document.getElementById('author').innerText = randomQuoteData.author;
+        
+    }
+</script>
+</body>
+</html>
